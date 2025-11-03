@@ -142,7 +142,9 @@ export const stripeWebhooks =async(request,response)=>{
             await Order.findByIdAndUpdate(orderId,{isPaid:true});
 
             // now we clear cart as order is done online 
-            await User.findByIdAndUpdate(userId,{cartItems:{}})
+            await User.findByIdAndUpdate(userId,{
+                cartItems:{},
+            })
             break;
         }
             
@@ -163,7 +165,7 @@ export const stripeWebhooks =async(request,response)=>{
             console.error(`Unhandled event type ${event.type}`)
             break;
     }
-    response.json({received: true})
+    return response.json({received: true})
 
 }
 

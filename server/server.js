@@ -4,7 +4,7 @@ import cors from 'cors'
 import connectDB from './configs/db.js';
 import 'dotenv/config';
 import userRouter from './routes/userRoute.js';
-import sellerRouter from './routes/sellerRoutes.js';
+import sellerRouter from './routes/sellerRoute.js';
 import connectCloudinary from './configs/cloudinary.js';
 import productRouter from './routes/productRoute.js';
 import cartRouter from './routes/cartRoute.js';
@@ -22,10 +22,10 @@ await connectCloudinary()
 
 // To allow what port will interact backend
 
-const allowedOrigins = ['http://localhost:5173', 'https://greencart-one-pi.vercel.app']
+const allowedOrigins = ['http://localhost:5173']
 
 
-app.post('stripe',express.raw({type:'application/json'}),stripeWebhooks)
+app.post('/stripe',express.raw({type:'application/json'}),stripeWebhooks)
 
 
 // MiddleWare Configuration
