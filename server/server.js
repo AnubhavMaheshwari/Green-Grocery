@@ -23,6 +23,7 @@ await connectCloudinary()
 // To allow what port will interact backend
 
 const allowedOrigins = ['http://localhost:5173','https://greencart-omega-seven.vercel.app']
+app.use(cors({origin: allowedOrigins, credentials:true}))
 
 
 app.post('/stripe',express.raw({type:'application/json'}),stripeWebhooks)
@@ -31,7 +32,6 @@ app.post('/stripe',express.raw({type:'application/json'}),stripeWebhooks)
 // MiddleWare Configuration
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({origin: allowedOrigins, credentials:true}))
 
 
 
