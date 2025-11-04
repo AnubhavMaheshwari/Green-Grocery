@@ -12,6 +12,8 @@ import addressRouter from './routes/addressRoute.js';
 import orderRouter from './routes/orderRoute.js';
 import { stripeWebhooks } from './controllers/orderController.js';
 
+
+
 const app = express();
 
 const port = process.env.PORT || 4000;
@@ -23,16 +25,15 @@ await connectCloudinary()
 // To allow what port will interact backend
 
 const allowedOrigins = ['http://localhost:5173','https://greencart-omega-seven.vercel.app']
-app.use(cors({origin: allowedOrigins, credentials:true}))
 
 
 app.post('/stripe',express.raw({type:'application/json'}),stripeWebhooks)
-app.use(express.json())
 
 
 // MiddleWare Configuration
-
+app.use(express.json())
 app.use(cookieParser())
+app.use(cors({origin: allowedOrigins, credentials:true}))
 
 
 
